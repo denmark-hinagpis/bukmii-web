@@ -2,9 +2,6 @@ package com.kowd.bukmii.ui.services;
 
 import javax.ws.rs.Path;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 /**
  * @author dchinagpis
  *
@@ -13,6 +10,6 @@ import org.apache.logging.log4j.Logger;
 public class RegistrationResource {
 
 	/***/
-	private static final Logger LOGGER = LogManager.getLogger(RegistrationResource.class);
+//	private static final Logger LOGGER = LogManager.getLogger(RegistrationResource.class);
 
 }
