@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<!-- Do not modify -->
+	<display-name>Bukmii Inc</display-name>
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<scripting-invalid>true</scripting-invalid>
+		</jsp-property-group>
+	</jsp-config>
+
+	<!-- Bukmii initial properties -->
+	<context-param>
+		<param-name>session-timeout</param-name>
+		<param-value>14400</param-value>
+	</context-param>
+	<context-param>
+		<param-name>output-encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</context-param>
+	<!-- Bukmii initial properties -->
+	
+	<!-- Log4j 2 properties -->
+	<context-param>
+		<param-name>isLog4jAutoInitializationDisabled</param-name>
+		<param-value>true</param-value>
+	</context-param>	
+	<context-param>
+        <param-name>log4jContextName</param-name>
+        <param-value>bukmii</param-value>
+    </context-param>
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>/WEB-INF/classes/com/kowd/bukmii/ui/config/log4j2.xml</param-value>
+    </context-param>
+	<!-- Log4j 2 properties -->
+	
+	<error-page> 
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/error</location>
+	</error-page>
+
+	<welcome-file-list>
+		<welcome-file>home</welcome-file>
+	</welcome-file-list>
+
+	<!-- Do not modify -->
+</web-app>
