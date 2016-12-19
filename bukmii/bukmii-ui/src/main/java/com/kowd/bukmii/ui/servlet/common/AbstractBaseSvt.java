@@ -35,7 +35,7 @@ public abstract class AbstractBaseSvt extends HttpServlet implements Servlet {
 	 */
 	protected AbstractBaseSvt(final Class< ? extends AbstractBaseSvt> clazz) {
 		super();
-		m_logger = LogFactory.getLog(AbstractBaseSvt.class);
+		m_logger = LogFactory.getLog(clazz);
 	}
 
 	@Override

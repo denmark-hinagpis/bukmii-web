@@ -13,18 +13,21 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.kowd.bukmii.ui.rest.common.AbstractBaseResource;
 
 /**
  * @author dchinagpis
  *
  */
 @Path("/search")
-public class SearchResource {
+public class SearchResource extends AbstractBaseResource {
 
-	/***/
-	private static final Logger LOGGER = LogManager.getLogger(SearchResource.class);
+	/**
+	 * @param clazz
+	 */
+	protected SearchResource() {
+		super(SearchResource.class);
+	}
 
 	/**
 	 * @param request HttpServletRequest
@@ -41,7 +44,7 @@ public class SearchResource {
 					 	  @Context final HttpServletResponse response,
 					 	  @PathParam(value = "username") final String userName) throws ServletException, IOException {
 		request.setAttribute("userName", userName);
-		LOGGER.info("userName: " + userName);
+		getLogger().info("userName: " + userName);
 		request.getRequestDispatcher("/templates/search.jsp").forward(request, response);
 	}
 
