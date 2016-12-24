@@ -22,7 +22,7 @@ public class UserComponent extends BaseComponent {
 	 */
 	public UserFormBean login(final String email, final String password) {
 		final UserDao dao = new UserDao(); //sa
-		final User user = dao.findByEmail(email);
+		final User user = dao.findByEmail(email); //my changes
 		final String encryptedPass = Crypt.encryptHexString(password);
 		if (null != user && user.getPassword().equals(encryptedPass)) {
 			return convertBeanToFormBean(user);
