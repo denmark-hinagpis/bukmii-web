@@ -27,6 +27,8 @@ public class UserComponent extends BaseComponent {
 		if (null != user && user.getPassword().equals(encryptedPass)) {
 			return convertBeanToFormBean(user);
 		} //ohayou
+		
+		//sample changes
 
 		return null;
 	}
