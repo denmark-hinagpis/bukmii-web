@@ -56,5 +56,7 @@ public class UserComponent extends BaseComponent {
 								sdf.format(user.getCreateDate()),
 								sdf.format(user.getUpdateDate()));
 	}
+	
+	//comment below
 
 }
