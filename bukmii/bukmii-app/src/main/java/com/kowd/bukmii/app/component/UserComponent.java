@@ -26,7 +26,9 @@ public class UserComponent extends BaseComponent {
 		final String encryptedPass = Crypt.encryptHexString(password);
 		if (null != user && user.getPassword().equals(encryptedPass)) {
 			return convertBeanToFormBean(user);
-		} //change
+		} //ohayou jhg
+		
+		//My new changes
 
 		return null;
 	}
