@@ -10,7 +10,6 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONObject;
 
-import com.kowd.bukmii.app.component.RegistrationComponent;
 import com.kowd.bukmii.ui.rest.common.AbstractBaseResource;
 
 /**
@@ -30,18 +29,24 @@ public class RegistrationResource extends AbstractBaseResource {
 		super(RegistrationResource.class);
 	}
 
+	/**
+	 *
+	 * @param user JSONObject
+	 * @return Response
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/signup")
 	@Produces(MediaType.TEXT_HTML)
 	public Response signUp(@QueryParam(value = "user") final JSONObject user) {
 		final String username = user.get("username").toString();
-		if(null != username && !"".equals(username)) {
-
+		if (null != username && !"".equals(username)) {
+			//
+			System.out.println();
 		}
 		user.get("password");
 
-		final RegistrationComponent comp = new RegistrationComponent();
+//		final RegistrationComponent comp = new RegistrationComponent();
 		return null;
 //		return comp.signUp(email, password, firstName, lastName);
 	}

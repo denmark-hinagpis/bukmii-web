@@ -101,6 +101,7 @@ public class UserDao extends UserGenDao {
 	/**
 	 *
 	 * @param user User
+	 * @return String
 	 */
 	public String signUp(final User user) {
 		user.setPasscode(RandomGenerator.getRandString());
