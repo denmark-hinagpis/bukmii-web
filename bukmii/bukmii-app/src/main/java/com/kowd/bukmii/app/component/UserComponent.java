@@ -15,6 +15,8 @@ import com.kowd.bukmii.hibernate.beans.User;
  */
 public class UserComponent extends BaseComponent {
 
+	//comment above
+
 	/**
 	 * @param email String
 	 * @param password String
