@@ -14,6 +14,8 @@ import com.kowd.bukmii.hibernate.beans.User;
  *
  */
 public class UserComponent extends BaseComponent {
+	
+	//my comment above
 
 	/**
 	 * @param email String
@@ -56,7 +58,4 @@ public class UserComponent extends BaseComponent {
 								sdf.format(user.getCreateDate()),
 								sdf.format(user.getUpdateDate()));
 	}
-	
-	//comment below
-
 }
