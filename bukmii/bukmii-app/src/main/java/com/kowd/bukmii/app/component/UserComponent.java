@@ -16,13 +16,13 @@ import com.kowd.bukmii.hibernate.beans.User;
 public class UserComponent extends BaseComponent {
 
 	/**
-	 * @param email String
+	 * @param userName String
 	 * @param password String
 	 * @return UserFormBean
 	 */
-	public UserFormBean login(final String email, final String password) {
+	public UserFormBean login2(final String userName, final String password) {
 		final UserDao dao = new UserDao();
-		final User user = dao.findByEmail(email);
+		final User user = dao.findByEmail(userName);
 		final String encryptedPass = Crypt.encryptHexString(password);
 		if (null != user && user.getPassword().equals(encryptedPass)) {
 			return convertBeanToFormBean(user);
