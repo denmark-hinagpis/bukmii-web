@@ -15,7 +15,7 @@ public class BukmiiApplication extends ResourceConfig {
 
 	/***/
 	public BukmiiApplication() {
-		packages(false, "com.kowd.bukmii.ui.rest.services");
+		packages(false, "com.kowd.bukmii.ui.services");
 		register(BukmiiAuthFilter.class);
 	}
 }

@@ -87,7 +87,7 @@ public class UserDao extends UserGenDao {
 	 *
 	 * @param user User
 	 */
-	public void generateUserName(final User user) {
+	private void generateUserName(final User user) {
 		final String userName = user.getEmail().substring(0, user.getEmail().lastIndexOf("@")).toLowerCase();
 		String newUserName = userName;
 		int index = 0;
@@ -102,10 +102,10 @@ public class UserDao extends UserGenDao {
 	 *
 	 * @param user User
 	 */
-	public void signUp(final User user) {
+	public String signUp(final User user) {
 		user.setPasscode(RandomGenerator.getRandString());
 		generateUserName(user);
-		persist(user);
+		return (String) save(user);
 	}
 
 }
