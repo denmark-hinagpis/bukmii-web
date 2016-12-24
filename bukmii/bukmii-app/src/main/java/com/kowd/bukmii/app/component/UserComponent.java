@@ -21,8 +21,8 @@ public class UserComponent extends BaseComponent {
 	 * @return UserFormBean
 	 */
 	public UserFormBean login(final String email, final String password) {
-		final UserDao dao = new UserDao(); //sa
-		final User user = dao.findByEmail(email); //my changes
+		final UserDao dao = new UserDao(); 
+		final User user = dao.findByEmail(email); 
 		final String encryptedPass = Crypt.encryptHexString(password);
 		if (null != user && user.getPassword().equals(encryptedPass)) {
 			return convertBeanToFormBean(user);
