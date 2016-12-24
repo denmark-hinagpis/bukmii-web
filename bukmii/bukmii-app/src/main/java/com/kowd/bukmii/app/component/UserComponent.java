@@ -20,11 +20,6 @@ public class UserComponent extends BaseComponent {
 	 * @param password String
 	 * @return UserFormBean
 	 */
-<<<<<<< HEAD
-//bow
-
-=======
->>>>>>> refs/remotes/origin/master
 	public UserFormBean login(final String email, final String password) {
 		final UserDao dao = new UserDao();
 		final User user = dao.findByEmail(email);
