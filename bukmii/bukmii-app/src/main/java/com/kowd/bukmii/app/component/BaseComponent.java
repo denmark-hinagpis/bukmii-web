@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.kowd.bukmii.enumeration.PictureSize;
 import com.kowd.bukmii.formbeans.PhotoFormBean;
 import com.kowd.bukmii.formbeans.UserFormBean;
@@ -15,6 +18,16 @@ import com.kowd.bukmii.hibernate.beans.User;
  *
  */
 class BaseComponent {
+
+	/***/
+	private final Logger m_logger;
+
+	/**
+	 * @param clazz Class< ? extends BaseComponent >
+	 */
+	protected BaseComponent(final Class< ? extends BaseComponent > clazz) {
+		m_logger = LogManager.getLogger(clazz);
+	}
 
 	/**
 	 * @param value long
@@ -110,6 +123,13 @@ class BaseComponent {
 									 stringValueOf(photo.getCreateDate().getTime()),
 									 stringValueOf(photo.getUpdateDate().getTime()));
 		}
+	}
+
+	/**
+	 * @return Logger
+	 */
+	protected Logger getLogger() {
+		return m_logger;
 	}
 
 }

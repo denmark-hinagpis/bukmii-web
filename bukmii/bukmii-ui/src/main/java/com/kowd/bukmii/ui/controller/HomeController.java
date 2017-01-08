@@ -2,10 +2,7 @@ package com.kowd.bukmii.ui.controller;
 
 import javax.servlet.annotation.WebServlet;
 
-import org.json.JSONObject;
-
 import com.kowd.bukmii.app.exception.BukmiiException;
-import com.kowd.bukmii.formbeans.ResponseFormBean;
 import com.kowd.bukmii.ui.servlet.common.AbstractWebController;
 import com.kowd.bukmii.ui.servlet.common.BukmiiModel;
 
@@ -32,16 +29,10 @@ public final class HomeController extends AbstractWebController {
 
 	@Override
 	protected void processPost(final BukmiiModel model) throws BukmiiException {
-//		throw new BukmiiException("Page not found.", 404);
-		final ResponseFormBean bean = new ResponseFormBean();
-		bean.setData(new JSONObject().toString());
-		bean.setStatus(201);
-		bean.setMessage("Valid.");
-		model.out(bean);
 	}
 
 	@Override
-	protected boolean byPassLogin(final String method) throws BukmiiException {
+	protected boolean byPassLogin(final String method) {
 		return true;
 	}
 

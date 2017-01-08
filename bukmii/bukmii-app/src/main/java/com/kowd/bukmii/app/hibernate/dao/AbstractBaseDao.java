@@ -3,8 +3,8 @@ package com.kowd.bukmii.app.hibernate.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,7 +19,7 @@ import com.kowd.bukmii.app.hibernate.connection.SessionFactoryUtil;
 abstract class AbstractBaseDao {
 
 	/***/
-	private final Log m_logger;
+	private final Logger m_logger;
 
 	/***/
 	private Session m_currentSession;
@@ -35,7 +35,7 @@ abstract class AbstractBaseDao {
 	protected AbstractBaseDao(final Class< ? extends AbstractBaseDao> clazz,
 							  final Session currentSession,
 							  final Transaction currentTransaction) {
-		this.m_logger = LogFactory.getLog(clazz);
+		this.m_logger = LogManager.getLogger(clazz);
 		this.m_currentSession = currentSession;
 		this.m_currentTransaction = currentTransaction;
 	}

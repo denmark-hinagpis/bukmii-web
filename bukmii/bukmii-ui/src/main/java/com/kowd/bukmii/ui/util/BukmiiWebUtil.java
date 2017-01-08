@@ -33,9 +33,8 @@ public final class BukmiiWebUtil {
 	/**
 	 * @param request HttpServletRequest
 	 * @return boolean
-	 * @throws BukmiiException e
 	 */
-	public static boolean isAuthenticatedWeb(final HttpServletRequest request) throws BukmiiException {
+	public static boolean isAuthenticatedWeb(final HttpServletRequest request) {
 		final HttpSession session = request.getSession();
 		if (null != session) {
 			final String userId = (String) session.getAttribute(BukmiiWebConst.ATTR_USER_USERID);

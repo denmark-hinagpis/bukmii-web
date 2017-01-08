@@ -34,41 +34,62 @@ public abstract class AbstractWebController extends AbstractBaseSvt {
 
 	@Override
 	protected final void doWork(final HttpServletRequest request,
-								final HttpServletResponse response) throws BukmiiException, ServletException, IOException {
+								final HttpServletResponse response) throws ServletException, IOException {
 		final String method = request.getMethod();
 		if (hasMethod(method)) {
 			final BukmiiModel model = new BukmiiModel(createRequestModel(request),
 													  createSessionModel(request.getSession(false)));
-			process(method, model);
-			if (model.getOut().size() > 0) {
-				response.setContentType(request.getContentType());
-				final PrintWriter out = response.getWriter();
-				if (model.getOut().size() == 1) {
-					out.write(new JSONObject(model.getOut().get(0)).toString());
-				} else {
-					for (final Object obj : model.getOut()) {
-						final String str = (String) obj;
-						if (BukmiiWebConst.NEW_LINE.equals(str)) {
-							out.println();
-						} else {
-							out.print(str);
-						}
-					}
-				}
-				out.flush();
+			try {
+				process(method, model);
+			} catch (final BukmiiException e) {
+				request.getSession().setAttribute(BukmiiWebConst.ATTR_STATUS, e.getStatus());
+				request.getSession().setAttribute(BukmiiWebConst.ATTR_MESSAGE, e.getMessage());
+				response.sendRedirect(request.getContextPath() + "/403error.jsp");
+				return;
+			}
+
+			processResponse(request, response, model);
+		} else {
+			response.sendRedirect(request.getContextPath() + "/404error.jsp");
+		}
+	}
+
+	/**
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @param model BukmiiModel
+	 * @throws ServletException e
+	 * @throws IOException e
+	 */
+	private void processResponse(final HttpServletRequest request,
+								 final HttpServletResponse response,
+								 final BukmiiModel model) throws ServletException, IOException {
+		if (model.getOut().size() > 0) {
+			response.setContentType(request.getContentType());
+			final PrintWriter out = response.getWriter();
+			if (model.getOut().size() == 1) {
+				out.write(new JSONObject(model.getOut().get(0)).toString());
 			} else {
-				setRequest(request, model.getRequest().get());
-				setSession(request, model.getSession().get());
-				if (!BukmiiUtil.isNullOrEmpty(model.getRedirectPath())) {
-					if (model.isRedirect()) {
-						response.sendRedirect(request.getContextPath() + model.getRedirectPath());
+				for (final Object obj : model.getOut()) {
+					final String str = (String) obj;
+					if (BukmiiWebConst.NEW_LINE.equals(str)) {
+						out.println();
 					} else {
-						request.getRequestDispatcher(model.getRedirectPath()).forward(request, response);
+						out.print(str);
 					}
 				}
 			}
+			out.flush();
 		} else {
-			response.sendRedirect(request.getContextPath() + "/404error.jsp");
+			setRequest(request, model.getRequest().get());
+			setSession(request, model.getSession().get());
+			if (!BukmiiUtil.isNullOrEmpty(model.getRedirectPath())) {
+				if (model.isRedirect()) {
+					response.sendRedirect(request.getContextPath() + model.getRedirectPath());
+				} else {
+					request.getRequestDispatcher(model.getRedirectPath()).forward(request, response);
+				}
+			}
 		}
 	}
 

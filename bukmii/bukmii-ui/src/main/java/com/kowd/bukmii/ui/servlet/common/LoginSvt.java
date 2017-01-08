@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kowd.bukmii.app.component.LoginComponent;
 import com.kowd.bukmii.app.exception.BukmiiException;
-import com.kowd.bukmii.formbeans.ResponseFormBean;
+import com.kowd.bukmii.app.util.Crypt;
 import com.kowd.bukmii.formbeans.UserFormBean;
 import com.kowd.bukmii.ui.constants.BukmiiWebConst;
 import com.kowd.bukmii.ui.util.BukmiiWebUtil;
@@ -34,13 +34,13 @@ public final class LoginSvt extends AbstractBaseSvt {
 	}
 
 	@Override
-	protected boolean byPassLogin(final String method) throws BukmiiException {
+	protected boolean byPassLogin(final String method) {
 		return true;
 	}
 
 	@Override
 	protected void doWork(final HttpServletRequest request,
-						  final HttpServletResponse response) throws BukmiiException, ServletException, IOException {
+						  final HttpServletResponse response) throws ServletException, IOException {
 		final String method = request.getMethod();
 		switch (method) {
 		case "GET":
@@ -63,16 +63,15 @@ public final class LoginSvt extends AbstractBaseSvt {
 	 * @throws IOException e
 	 */
 	private void processPost(final HttpServletRequest request,
-							 final HttpServletResponse response) throws BukmiiException, ServletException, IOException {
-		final String email = BukmiiWebUtil.getAttributeAsString(request, BukmiiWebConst.ATTR_USER_EMAIL, "");
-		final String password = BukmiiWebUtil.getAttributeAsString(request, BukmiiWebConst.ATTR_USER_PASSWORD, "");
-		final ResponseFormBean bean = m_component.login(email, password);
-		if (201 == bean.getStatus()) {
+							 final HttpServletResponse response) throws ServletException, IOException {
+		final String email = BukmiiWebUtil.getParameterAsString(request, BukmiiWebConst.ATTR_USER_EMAIL, "");
+		final String password = BukmiiWebUtil.getParameterAsString(request, BukmiiWebConst.ATTR_USER_PASSWORD, "");
+		try {
+			final UserFormBean bean = m_component.login(email, Crypt.encryptHexString(password));
 			final HttpSession session = request.getSession(true);
-			final UserFormBean userBean = (UserFormBean) bean.getData();
-			session.setAttribute(BukmiiWebConst.ATTR_USER_USERID, userBean.getId());
+			session.setAttribute(BukmiiWebConst.ATTR_USER_USERID, bean.getId());
 			response.sendRedirect(request.getContextPath() + "/home");
-		} else {
+		} catch (final BukmiiException e) {
 			final int attempt = BukmiiWebUtil.getAttributeAsInt(request, BukmiiWebConst.ATTR_LOGIN_ATTEMPT, 0);
 			if (attempt >= 3) {
 				request.setAttribute(BukmiiWebConst.ATTR_LOGIN_ATTEMPT, attempt + 1);
@@ -91,7 +90,7 @@ public final class LoginSvt extends AbstractBaseSvt {
 	 * @throws IOException e
 	 */
 	private void processGet(final HttpServletRequest request,
-							final HttpServletResponse response) throws BukmiiException, ServletException, IOException {
+							final HttpServletResponse response) throws ServletException, IOException {
 		final int attempt = BukmiiWebUtil.getAttributeAsInt(request, BukmiiWebConst.ATTR_LOGIN_ATTEMPT, 0);
 		if (attempt == 1) {
 			request.setAttribute(BukmiiWebConst.ATTR_LOGIN_ATTEMPT, attempt + 1);

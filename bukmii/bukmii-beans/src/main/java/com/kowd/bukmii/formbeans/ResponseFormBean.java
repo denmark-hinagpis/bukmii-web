@@ -20,10 +20,15 @@ public class ResponseFormBean implements Serializable {
 	/***/
 	private Serializable m_data;
 
-	/***/
-	public ResponseFormBean() {
-		m_message = "";
-		m_data = null;
+	/**
+	 * @param status int
+	 * @param message String
+	 * @param data Serializable
+	 */
+	public ResponseFormBean(final int status, final String message, final Serializable data) {
+		this.m_status = status;
+		this.m_message = message;
+		this.m_data = data;
 	}
 
 	/**

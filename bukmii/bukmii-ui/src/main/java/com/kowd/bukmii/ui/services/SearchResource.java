@@ -25,7 +25,7 @@ public class SearchResource extends AbstractBaseResource {
 	/**
 	 * @param clazz
 	 */
-	protected SearchResource() {
+	public SearchResource() {
 		super(SearchResource.class);
 	}
 
