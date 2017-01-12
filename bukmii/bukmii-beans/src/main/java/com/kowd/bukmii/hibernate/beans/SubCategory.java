@@ -44,7 +44,7 @@ public class SubCategory extends BaseEntity implements Serializable {
 	private String m_name;
 
 	/***/
-    @OneToMany(mappedBy = "subCategory", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "m_subCategory", fetch = FetchType.LAZY)
 	private List<Business> m_businesses;
 
 	/***/

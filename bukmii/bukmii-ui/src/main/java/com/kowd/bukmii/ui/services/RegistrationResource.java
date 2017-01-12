@@ -2,6 +2,7 @@ package com.kowd.bukmii.ui.services;
 
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -29,38 +30,33 @@ public class RegistrationResource extends AbstractBaseResource {
 	}
 
 	/**
-	 *
-	 * @param user JSONObject
+	 * @param firstName String
+	 * @param lastName String
+	 * @param email String
+	 * @param password String
+	 * @param phoneNumber String
+	 * @param image String
 	 * @return Response
 	 */
 	@POST
 	@PermitAll
-	@Consumes(MediaType.APPLICATION_JSON)
+//	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	@Path("/signup")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response signUp(@QueryParam(value = "user") final JSONObject user) {
-		if (null == user) {
-			return toResponse(new BukmiiException("Invalid parameters.", 403));
-		}
-		if (null == user.getString("first_name")) {
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response signUp(@FormParam(value = "first_name") final String firstName,
+						   @FormParam(value = "last_name") final String lastName,
+						   @FormParam(value = "email") final String email,
+						   @FormParam(value = "password") final String password,
+						   @FormParam(value = "phone_number") final String phoneNumber,
+						   @FormParam(value = "image") final String image) {
+		if (null == firstName || firstName.isEmpty()) {
 			return toResponse(new BukmiiException("Missing required parameter first name.", 403));
 		}
-		if (null == user.getString("last_name")) {
+		if (null == lastName || lastName.isEmpty()) {
 			return toResponse(new BukmiiException("Missing required parameter last name.", 403));
 		}
-		if (null == user.getString("email")) {
+		if (null == email || email.isEmpty()) {
 			return toResponse(new BukmiiException("Missing required parameter email.", 403));
-		}
-
-		final String firstName = user.getString("first_name");
-		final String lastName = user.getString("last_name");
-		final String email = user.getString("email");
-		final String password = user.getString("password");
-		final String phoneNumber = user.getString("phone_number");
-
-		String image = null;
-		if (null == user.getString("image")) {
-			image = user.getString("image");
 		}
 
 		final RegistrationComponent comp = new RegistrationComponent();
@@ -79,9 +75,9 @@ public class RegistrationResource extends AbstractBaseResource {
 	 */
 	@POST
 	@PermitAll
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("/signupfb")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces({MediaType.APPLICATION_JSON})
 	public Response signUpFB(@QueryParam(value = "user") final JSONObject user) {
 		if (null == user) {
 			return toResponse(new BukmiiException("Invalid parameters.", 403));

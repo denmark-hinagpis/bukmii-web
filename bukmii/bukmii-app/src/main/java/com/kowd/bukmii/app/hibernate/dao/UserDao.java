@@ -39,7 +39,7 @@ public class UserDao extends UserGenDao {
 	@SuppressWarnings("unchecked")
 	public User findByEmail(final String email) {
 		final Criteria criteria = createCriteria();
-		criteria.add(Restrictions.eq("email", email));
+		criteria.add(Restrictions.eq("m_email", email));
 		criteria.setReadOnly(true);
 		final List<User> list = criteria.list();
 		if (null != list && list.size() == 1) {
@@ -56,7 +56,7 @@ public class UserDao extends UserGenDao {
 	@SuppressWarnings("unchecked")
 	public User findByUserName(final String userName) {
 		final Criteria criteria = createCriteria();
-		criteria.add(Restrictions.eq("userName", userName));
+		criteria.add(Restrictions.eq("m_userName", userName));
 		criteria.setReadOnly(true);
 		final List<User> list = criteria.list();
 		if (null != list && list.size() == 1) {
@@ -75,7 +75,7 @@ public class UserDao extends UserGenDao {
 		final Criteria criteria = createCriteria();
 		criteria.setReadOnly(true);
 		criteria.setProjection(Projections.distinct(Projections.id()));
-		criteria.add(Restrictions.eq("userName", userName));
+		criteria.add(Restrictions.eq("m_userName", userName));
 		final List<User> list = criteria.list();
 		if (null != list && list.size() == 1) {
 			return true;

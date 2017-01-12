@@ -3,44 +3,62 @@ package com.kowd.bukmii.formbeans;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author dhinagpis
  *
  */
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class BusinessFormBean extends BaseFormBean implements Serializable {
 
+	@XmlTransient
 	private static final long serialVersionUID = 1L;
 
 	/***/
+	@XmlElement(name = "id", required = true)
 	private String m_id;
 
 	/***/
+	@XmlElement(name = "subCategoryId", required = true)
 	private String m_subCategoryId;
 
 	/***/
+	@XmlElement(name = "locationId", required = true)
 	private String m_locationId;
 
 	/***/
+	@XmlElement(name = "pages", required = false)
 	private List<String> m_pages;
 
 	/***/
+	@XmlElement(name = "contacts", required = false)
 	private List<String> m_contacts;
 
 	/***/
+	@XmlElement(name = "name", required = true)
 	private String m_name;
 
 	/***/
+	@XmlElement(name = "businessHours", required = true)
 	private String m_businessHours;
 
 	/***/
+	@XmlElement(name = "subscriptionType", required = true)
 	private String m_subscriptionType;
 
 	/***/
+	@XmlElement(name = "image", required = false)
 	private PhotoFormBean m_image;
 
 	/***/
+	@XmlElement(name = "userIds", required = true)
 	private List<String> m_userIds;
 
 	/**

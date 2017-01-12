@@ -44,11 +44,11 @@ public class User extends BaseEntity implements Serializable {
 	private String m_id;
 
 	/***/
-	@Column(name = "user_name")
+	@Column(name = "user_name", nullable = false)
 	private String m_userName;
 
 	/***/
-	@Column(nullable = false)
+	@Column(name = "email", nullable = false)
 	private String m_email;
 
 	/***/
@@ -64,13 +64,15 @@ public class User extends BaseEntity implements Serializable {
 	private String m_phoneNumber;
 
 	/***/
+	@Column(name = "passcode")
 	private String m_passcode;
 
 	/***/
+	@Column(name = "password")
 	private String m_password;
 
 	/***/
-	@Column(columnDefinition = "ntext", length = 500)
+	@Column(name = "about", columnDefinition = "ntext", length = 500)
 	private String m_about;
 
 	/***/

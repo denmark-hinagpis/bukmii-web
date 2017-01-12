@@ -1,6 +1,7 @@
 package com.kowd.bukmii.app.hibernate.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -46,6 +47,7 @@ class ReservationHistoryGenDao extends AbstractBaseDao implements DaoInterface<R
 
 	@Override
 	public void persist(final ReservationHistory entity) {
+		entity.setUpdateDate(new Date());
 		super.persistEntity(entity);
 	}
 

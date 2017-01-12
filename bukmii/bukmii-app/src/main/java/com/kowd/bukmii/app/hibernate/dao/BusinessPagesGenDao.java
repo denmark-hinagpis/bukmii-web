@@ -1,6 +1,7 @@
 package com.kowd.bukmii.app.hibernate.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -47,6 +48,7 @@ class BusinessPagesGenDao extends AbstractBaseDao implements DaoInterface<Busine
 
 	@Override
 	public void persist(final BusinessPages entity) {
+		entity.setUpdateDate(new Date());
 		super.persistEntity(entity);
 	}
 

@@ -51,7 +51,7 @@ public class Location extends BaseEntity implements Serializable {
 	private String m_zipCode;
 
 	/***/
-    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "m_address", fetch = FetchType.LAZY)
 	private List<Business> m_businesses;
 
 	/***/

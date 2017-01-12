@@ -2,35 +2,50 @@ package com.kowd.bukmii.formbeans;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author dhinagpis
  *
  */
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class LocationFormBean extends BaseFormBean implements Serializable {
 
+	@XmlTransient
 	private static final long serialVersionUID = 1L;
 
 	/***/
+	@XmlElement(name = "id", required = true)
 	private String m_id;
 
 	/***/
+	@XmlElement(name = "longitude", required = true)
 	private String m_longitude;
 
 	/***/
+	@XmlElement(name = "latitude", required = true)
 	private String m_latitude;
 
 	/***/
+	@XmlElement(name = "addressName", required = true)
 	private String m_addressName;
 
 	/***/
+	@XmlElement(name = "city", required = true)
 	private String m_city;
 
 	/***/
+	@XmlElement(name = "country", required = true)
 	private String m_country;
 
 	/***/
+	@XmlElement(name = "zipCode", required = true)
 	private String m_zipCode;
 
 	/**

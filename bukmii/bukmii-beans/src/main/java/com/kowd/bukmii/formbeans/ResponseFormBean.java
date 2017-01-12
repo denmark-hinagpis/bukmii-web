@@ -2,22 +2,34 @@ package com.kowd.bukmii.formbeans;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author dchinagpis
  *
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class ResponseFormBean implements Serializable {
 
+	@XmlTransient
 	private static final long serialVersionUID = 1L;
 
 	/***/
+	@XmlElement(name = "status", required = true)
 	private int m_status;
 
 	/***/
+	@XmlElement(name = "message", required = false)
 	private String m_message;
 
 	/***/
+	@XmlElement(name = "data", required = false)
 	private Serializable m_data;
 
 	/**

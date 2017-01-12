@@ -1,6 +1,7 @@
 package com.kowd.bukmii.app.hibernate.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -45,6 +46,7 @@ class PostGenDao extends AbstractBaseDao implements DaoInterface<Post, Long> {
 
 	@Override
 	public void persist(final Post entity) {
+		entity.setUpdateDate(new Date());
 		super.persistEntity(entity);
 	}
 

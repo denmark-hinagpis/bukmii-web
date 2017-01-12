@@ -1,5 +1,7 @@
 package com.kowd.bukmii.formbeans;
 
+import javax.xml.bind.annotation.XmlElement;
+
 /**
  *
  * @author dchinagpis
@@ -8,9 +10,11 @@ package com.kowd.bukmii.formbeans;
 public class BaseFormBean {
 
 	/***/
+	@XmlElement(name = "createDate", required = false)
 	private String m_createDate;
 
 	/***/
+	@XmlElement(name = "updateDate", required = false)
 	private String m_updateDate;
 
 	/**

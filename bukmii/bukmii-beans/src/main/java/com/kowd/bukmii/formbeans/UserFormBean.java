@@ -2,40 +2,58 @@ package com.kowd.bukmii.formbeans;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author dhinagpis
  *
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class UserFormBean extends BaseFormBean implements Serializable {
 
+	@XmlTransient
 	private static final long serialVersionUID = 1L;
 
 	/***/
+	@XmlElement(name = "id", required = true)
 	private String m_id;
 
 	/***/
+	@XmlElement(name = "userName", required = true)
 	private String m_userName;
 
 	/***/
+	@XmlElement(name = "email", required = true)
 	private String m_email;
 
 	/***/
+	@XmlElement(name = "firstName", required = true)
 	private String m_firstName;
 
 	/***/
+	@XmlElement(name = "lastName", required = true)
 	private String m_lastName;
 
 	/***/
+	@XmlElement(name = "phoneNumber", required = false)
 	private String m_phoneNumber;
 
 	/***/
+	@XmlElement(name = "passcode", required = false)
 	private String m_passcode;
 
 	/***/
+	@XmlElement(name = "about", required = false)
 	private String m_about;
 
 	/***/
+	@XmlElement(name = "image", required = false)
 	private PhotoFormBean m_image;
 
 	/**

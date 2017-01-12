@@ -2,25 +2,38 @@ package com.kowd.bukmii.formbeans;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author dchinagpis
  *
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class ReservationItemFormBean extends BaseFormBean implements Serializable {
 
+	@XmlTransient
 	private static final long serialVersionUID = 1L;
 
 	/***/
+	@XmlElement(name = "id", required = true)
 	private String m_id;
 
 	/***/
+	@XmlElement(name = "businessId", required = true)
 	private String m_businessId;
 
 	/***/
+	@XmlElement(name = "name", required = true)
 	private String m_name;
 
 	/***/
+	@XmlElement(name = "description", required = false)
 	private String m_description;
 
 	/**

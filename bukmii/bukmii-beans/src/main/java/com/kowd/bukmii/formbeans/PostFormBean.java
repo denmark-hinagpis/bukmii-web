@@ -3,25 +3,38 @@ package com.kowd.bukmii.formbeans;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author dchinagpis
  *
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class PostFormBean extends BaseFormBean implements Serializable {
 
+	@XmlTransient
 	private static final long serialVersionUID = 1L;
 
 	/***/
+	@XmlElement(name = "postId", required = true)
 	private String m_postId;
 
 	/***/
+	@XmlElement(name = "message", required = true)
 	private String m_message;
 
 	/***/
+	@XmlElement(name = "photos", required = false)
 	private List<PhotoFormBean> m_photos;
 
 	/***/
+	@XmlElement(name = "likeUserIds", required = false)
 	private List<String> m_likeUserIds;
 
 	/**

@@ -60,6 +60,13 @@ abstract class AbstractBaseDao {
 	}
 
 	/***/
+	public void flush() {
+		if (null != m_currentSession && m_currentSession.isConnected()) {
+			m_currentSession.flush();
+		}
+	}
+
+	/***/
 	public void rollback() {
 		if (null != m_currentTransaction) {
 			m_currentTransaction.rollback();

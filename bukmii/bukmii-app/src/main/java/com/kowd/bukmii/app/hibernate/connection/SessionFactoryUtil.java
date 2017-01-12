@@ -66,7 +66,7 @@ public final class SessionFactoryUtil {
 
 
 			configuration.setProperty(Environment.DRIVER, "org.h2.Driver");
-			configuration.setProperty(Environment.URL, "jdbc:h2:" + new File("C:\\Users\\dchinagpis\\Desktop\\SampleDb\\mdpdb").getPath());
+			configuration.setProperty(Environment.URL, "jdbc:h2:" + new File("C:\\Users\\denmark.hinagpis\\Desktop\\SampleDb\\mdpdb").getPath());
 			configuration.setProperty(Environment.USER, "sa");
 			configuration.setProperty(Environment.PASS, "");
 

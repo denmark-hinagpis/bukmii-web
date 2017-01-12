@@ -43,7 +43,7 @@ public class Reservation extends BaseEntity implements Serializable {
 	private char m_status;
 
 	/***/
-	@OneToMany(mappedBy = "item")
+	@OneToMany(mappedBy = "m_item")
 	private List<ReservationHistory> m_history;
 
 	/***/

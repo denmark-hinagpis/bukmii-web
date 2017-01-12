@@ -1,10 +1,7 @@
 package com.kowd.bukmii.app.component;
 
-import java.util.Base64;
-
 import org.hibernate.HibernateException;
 
-import com.kowd.bukmii.app.aws.S3Upload;
 import com.kowd.bukmii.app.exception.BukmiiException;
 import com.kowd.bukmii.app.hibernate.dao.PhotoDao;
 import com.kowd.bukmii.app.hibernate.dao.UserDao;
@@ -60,9 +57,10 @@ public class RegistrationComponent extends BaseComponent {
 				final PhotoDao photoDao = new PhotoDao(dao.getCurrentSession(), dao.getCurrentTransaction());
 				final Photo photo = photoDao.addNew(imgType);
 
-				final byte[] img = Base64.getDecoder().decode(base64Img);
-				final S3Upload s3Upload = new S3Upload();
-				s3Upload.uploadPhoto(photo, img);
+//				final String base64Encrypt = base64Img.replace("data:image/png;base64,", "");
+//				final byte[] img = Base64.getDecoder().decode(base64Encrypt);
+//				final S3Upload s3Upload = new S3Upload();
+//				s3Upload.uploadPhoto(photo, img);
 
 				user.setImage(photo);
 			}

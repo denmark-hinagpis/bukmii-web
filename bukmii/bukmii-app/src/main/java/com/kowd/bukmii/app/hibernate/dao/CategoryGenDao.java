@@ -1,6 +1,7 @@
 package com.kowd.bukmii.app.hibernate.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -45,6 +46,7 @@ class CategoryGenDao extends AbstractBaseDao implements DaoInterface<Category, L
 
 	@Override
 	public void persist(final Category entity) {
+		entity.setUpdateDate(new Date());
 		super.persistEntity(entity);
 	}
 

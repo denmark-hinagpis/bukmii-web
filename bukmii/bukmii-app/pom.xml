@@ -22,7 +22,7 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 		</dependency>
-		
+
 		<!-- Commons IO -->
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -48,6 +48,14 @@
 			<artifactId>aws-java-sdk</artifactId>
 			<version>1.11.59</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.193</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

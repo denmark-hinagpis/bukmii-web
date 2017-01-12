@@ -41,7 +41,7 @@ public class Post extends BaseEntity implements Serializable {
 	private String m_message;
 
 	/***/
-	@OneToMany(mappedBy = "post")
+	@OneToMany(mappedBy = "m_post")
 	private List<Photo> m_photos;
 
 	/***/

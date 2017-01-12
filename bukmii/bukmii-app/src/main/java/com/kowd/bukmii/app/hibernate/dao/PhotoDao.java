@@ -34,8 +34,9 @@ public class PhotoDao extends PhotoGenDao {
 		final Photo photo = new Photo();
 		photo.setFileName(RandomGenerator.getRandString());
 		photo.setFileType(imgType);
-		final long id = (long) super.save(photo);
-		return findById(id);
+		save(photo);
+		flush();
+		return photo;
 	}
 
 }

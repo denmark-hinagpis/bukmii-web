@@ -2,11 +2,11 @@ package com.kowd.bukmii.ui.rest.common;
 
 import java.io.Serializable;
 
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
 
 import com.kowd.bukmii.app.exception.BukmiiException;
 import com.kowd.bukmii.formbeans.ResponseFormBean;
@@ -41,7 +41,9 @@ public abstract class AbstractBaseResource {
 	 * @return Reponse
 	 */
 	protected Response okResponse(final int status, final String message, final Serializable data) {
-		return Response.ok(new ResponseFormBean(status, message, data), MediaType.APPLICATION_JSON).build();
+		final ResponseFormBean bean = new ResponseFormBean(status, message, data);
+		final JSONObject jsonResponse = new JSONObject(bean);
+		return Response.status(201).entity(jsonResponse.toString()).build();
 	}
 
 	/**
@@ -49,10 +51,9 @@ public abstract class AbstractBaseResource {
 	 * @return Response
 	 */
 	protected Response toResponse(final BukmiiException ex) {
-		return Response.status(ex.getStatus())
-				.entity(ex)
-				.type(MediaType.APPLICATION_JSON).
-				build();
+		final ResponseFormBean bean = new ResponseFormBean(ex.getStatus(), ex.getMessage(), null);
+		final JSONObject jsonResponse = new JSONObject(bean);
+		return Response.status(ex.getStatus()).entity(jsonResponse.toString()).build();
 	}
 
 }

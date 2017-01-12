@@ -5,9 +5,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 /**
  *
  * @author dchinagpis
@@ -17,17 +14,17 @@ import org.hibernate.annotations.UpdateTimestamp;
 public class BaseEntity {
 
 	/***/
-	@CreationTimestamp
 	@Column(name = "create_date", updatable = false)
 	private Date m_createDate;
 
 	/***/
-	@UpdateTimestamp
-	@Column(name = "update_date", updatable = true)
+	@Column(name = "update_date", insertable = false)
 	private Date m_updateDate;
 
 	/***/
 	protected BaseEntity() {
+		m_createDate = new Date();
+		m_updateDate = new Date();
 	}
 
 	/**

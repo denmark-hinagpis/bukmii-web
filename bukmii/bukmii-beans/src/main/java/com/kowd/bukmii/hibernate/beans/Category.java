@@ -35,7 +35,7 @@ public class Category extends BaseEntity implements Serializable {
 	private String m_color;
 
 	/***/
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "m_category", fetch = FetchType.LAZY)
 	private List<SubCategory> m_subCategory;
 
 	/***/
