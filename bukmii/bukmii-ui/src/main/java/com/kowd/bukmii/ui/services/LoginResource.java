@@ -2,10 +2,10 @@ package com.kowd.bukmii.ui.services;
 
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -34,9 +34,10 @@ public class LoginResource extends AbstractBaseResource {
 	 */
 	@POST
 	@PermitAll
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login(@QueryParam(value = "email") final String email, @QueryParam(value = "password") final String ecryptedPassword) {
+	public Response login(@FormParam(value = "email") final String email,
+			   			  @FormParam(value = "password") final String ecryptedPassword) {
 		if (null == email || email.isEmpty()) {
 			return toResponse(new BukmiiException("Missing required parameter email.", 403));
 		}

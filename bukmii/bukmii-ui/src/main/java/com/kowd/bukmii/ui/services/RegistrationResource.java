@@ -40,7 +40,7 @@ public class RegistrationResource extends AbstractBaseResource {
 	 */
 	@POST
 	@PermitAll
-//	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	@Path("/signup")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response signUp(@FormParam(value = "first_name") final String firstName,

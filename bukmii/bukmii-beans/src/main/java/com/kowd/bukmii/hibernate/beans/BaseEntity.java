@@ -18,7 +18,7 @@ public class BaseEntity {
 	private Date m_createDate;
 
 	/***/
-	@Column(name = "update_date", insertable = false)
+	@Column(name = "update_date", updatable = true)
 	private Date m_updateDate;
 
 	/***/

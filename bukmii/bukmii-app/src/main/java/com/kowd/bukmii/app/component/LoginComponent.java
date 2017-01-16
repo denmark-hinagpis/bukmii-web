@@ -59,8 +59,8 @@ public class LoginComponent extends BaseComponent {
 		final UserDao dao = new UserDao();
 		try {
 			final User user = dao.findByEmail(email);
+			dao.commit();
 			if (null != user && user.getPassword().equals(encryptedPwd)) {
-				dao.commit();
 				return toFormBean(user);
 			} else {
 				throw new BukmiiException("Invalid email or password.", 403);
